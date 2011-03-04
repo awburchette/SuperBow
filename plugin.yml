@@ -1,0 +1,5 @@
+name: SuperBow
+
+main: bitswitch.SuperBow
+
+version: 0.1
