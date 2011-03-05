@@ -1,4 +1,4 @@
-package bitswitch.SuperBow;
+package com.gmail.awburchette.plugin.SuperBow;
 
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;

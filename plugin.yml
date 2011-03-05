@@ -1,5 +1,5 @@
 name: SuperBow
 
-main: bitswitch.SuperBow
+main: com.gmail.awburchette.plugin.SuperBow.SuperBow
 
-version: 0.1
+version: 0.3
