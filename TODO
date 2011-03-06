@@ -1,3 +1,4 @@
+Add a command to reload the config file without restarting the server.
 Redo the way fire arrows work.
 The config file would be like this:
 
