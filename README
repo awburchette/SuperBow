@@ -8,7 +8,7 @@ them the values under the Default entry.
 
 Current options:
 damageMultiplier - Changes how much damage an arrow does.
-useFireArrows - Will set any entity(Player or mob) on fire for as long as it takes to kill them.
+useFireArrows - The arrow is on fire during it's existence and will set any entity(player and mobs) shot with it on fire until it kills them.
 
 In the example config below bitswitch's arrows will set entities on fire and do (normal arrow damage)*5
 while everyone else's arrows act as arrows normally do.

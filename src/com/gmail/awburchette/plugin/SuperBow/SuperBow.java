@@ -21,6 +21,7 @@ import org.bukkit.util.config.Configuration;
  */
 public class SuperBow extends JavaPlugin {
     SuperBowEntityListener entityListener;
+    SuperBowPlayerListener playerListener;
     Configuration config;
     private final HashMap<Player, Boolean> debugees = new HashMap<Player, Boolean>();
     
@@ -53,9 +54,11 @@ public class SuperBow extends JavaPlugin {
     
     public void onEnable() {
     	entityListener = new SuperBowEntityListener(this);
+    	playerListener = new SuperBowPlayerListener(this);
         // Register our events
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvent(Event.Type.ENTITY_DAMAGED, entityListener, Priority.Normal, this);
+        pm.registerEvent(Event.Type.PLAYER_ITEM, playerListener, Priority.Normal, this);
         readConfig();
         PluginDescriptionFile pdfFile = this.getDescription();
         System.out.println( pdfFile.getName() + " version " + pdfFile.getVersion() + " is enabled!" );

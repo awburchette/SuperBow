@@ -17,14 +17,7 @@ public class SuperBowEntityListener extends EntityListener {
     public SuperBowEntityListener(SuperBow instance) {
         plugin = instance;
     }
-	
-    public static void setUseFireArrows(Boolean c){
-		 useFireArrows = c;
-	 }
-    
-    public static void setDamageMultiplier(int i){
-    	intDamageMultiplier = i;
-    }
+
     //Insert Player related code here
     @Override
     public void onEntityDamage(EntityDamageEvent event)

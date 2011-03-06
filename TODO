@@ -1,1 +1,20 @@
-Have arrows on fire in flight for users with useFireArrows: true.
+Redo the way fire arrows work.
+The config file would be like this:
+
+SuperBow:
+	Default:
+		damageMultiplier: 1
+		fireArrows:
+			flight: false
+			entities: false
+			blocks: false
+	bitswitch:
+		damageMultiplier: 1
+		fireArrows:
+			flight: true
+			entities: true
+			blocks: true
+			
+flight would set it so the arrow is on fire during the time it's in flight on stuck in a block.
+entities would set it so the arrow would set players, hostile mobs, and neutral mobs on fire if shot with the arrow
+blocks would set it so the arrow would set the block that it hits on fire.
