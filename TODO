@@ -1,5 +1,10 @@
+Add permissions and group manager support
+Get the block ignition stuff working
+
+Done -
+Add commands to change options in game
 Add a command to reload the config file without restarting the server.
-Redo the way fire arrows work.
+Redo the way fire arrows work. 
 The config file would be like this:
 
 SuperBow:

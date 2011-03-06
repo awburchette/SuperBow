@@ -29,10 +29,8 @@ public class SuperBowEntityListener extends EntityListener {
         	if(edee.getProjectile() instanceof Arrow) {
         		if(edee.getDamager() instanceof Player) {
         			Player p = (Player) edee.getDamager();
-        			Configuration c = plugin.config;
-        			intDamageMultiplier = c.getInt("SuperBow." + p.getName() + ".damageMultipler", c.getInt("SuperBow.Default.damageMultiplier", 1));
-        			useFireArrows = c.getBoolean("SuperBow." + p.getName() + ".useFireArrows", c.getBoolean("SuperBow.Default.useFireArrows", false));
-        			
+        			intDamageMultiplier = plugin.config.getInt("SuperBow." + p.getName() + ".damageMultiplier", plugin.config.getInt("SuperBow.Default.damageMultiplier", 1));
+        			useFireArrows = plugin.config.getBoolean("SuperBow." + p.getName() + ".fireArrows.entity", plugin.config.getBoolean("SuperBow.Default.fireArrows.entity", false));
         			event.setDamage(event.getDamage()*intDamageMultiplier);
         			if(useFireArrows) {
         				LivingEntity e = (LivingEntity) edee.getEntity();

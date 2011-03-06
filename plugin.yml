@@ -1,5 +1,4 @@
 name: SuperBow
-
 main: com.gmail.awburchette.plugin.SuperBow.SuperBow
-
-version: 0.6
+author: Anthony "bitswitch" Burchette
+version: 0.8

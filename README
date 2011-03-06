@@ -8,9 +8,11 @@ them the values under the Default entry.
 
 Current options:
 damageMultiplier - Changes how much damage an arrow does.
-useFireArrows - The arrow is on fire during it's existence and will set any entity(player and mobs) shot with it on fire until it kills them.
+fireArrows.block - The arrow will set the block it hits on fire. (Currently not working)
+fireArrows.entity - The arrow will set any entity(player and mobs) shot with it on fire until it kills them.
+fireArrows.flight - The arrow is on fire during it's existence
 
-In the example config below bitswitch's arrows will set entities on fire and do (normal arrow damage)*5
+In the example config below bitswitch's arrows will set entities on fire, blocks on fire, be on fire during flight, and do (normal arrow damage)*5
 while everyone else's arrows act as arrows normally do.
 
 Example config:
@@ -18,7 +20,13 @@ Example config:
 SuperBow:
     Default:
         damageMultiplier: 1
-        useFireArrows: false
+        fireArrows:
+            block: false
+            entity: false
+            flight: false
     bitswitch:
         damageMultiplier: 5
-        useFireArrows: true
+        fireArrows:
+            block: true
+            entity: true
+            flight: true

@@ -14,6 +14,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.util.config.Configuration;
 
+
 /**
  * SuperBow for Bukkit
  *
@@ -22,6 +23,7 @@ import org.bukkit.util.config.Configuration;
 public class SuperBow extends JavaPlugin {
     SuperBowEntityListener entityListener;
     SuperBowPlayerListener playerListener;
+    SuperBowBlockListener blockListener;
     Configuration config;
     private final HashMap<Player, Boolean> debugees = new HashMap<Player, Boolean>();
     
@@ -41,7 +43,10 @@ public class SuperBow extends JavaPlugin {
     	    	    out.write("SuperBow:\n");
     	    	    out.write("    Default:\n");
     	    	    out.write("        damageMultiplier: 1\n");
-    	    	    out.write("        useFireArrows: false\n");
+    	    	    out.write("        fireArrows:\n");
+    	    	    out.write("            flight: false\n");
+    	    	    out.write("            entity: false\n");
+    	    	    out.write("            block: false\n");
     	    	    //Close the output stream
     	    	    out.close();
     	    	    }catch (Exception e){//Catch exception if any
@@ -50,15 +55,21 @@ public class SuperBow extends JavaPlugin {
     	}
     	config = new Configuration(file);
     	config.load();
-        }
+    }
     
+    public void reloadConfig() {
+    	config.load();
+    }
+        
     public void onEnable() {
     	entityListener = new SuperBowEntityListener(this);
     	playerListener = new SuperBowPlayerListener(this);
         // Register our events
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvent(Event.Type.ENTITY_DAMAGED, entityListener, Priority.Normal, this);
+        pm.registerEvent(Event.Type.PLAYER_COMMAND_PREPROCESS, playerListener, Priority.Normal, this);
         pm.registerEvent(Event.Type.PLAYER_ITEM, playerListener, Priority.Normal, this);
+        //pm.registerEvent(Event.Type.BLOCK_DAMAGED, blockListener, Priority.Normal, this);
         readConfig();
         PluginDescriptionFile pdfFile = this.getDescription();
         System.out.println( pdfFile.getName() + " version " + pdfFile.getVersion() + " is enabled!" );
