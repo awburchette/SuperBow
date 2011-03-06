@@ -1,0 +1,10 @@
+0.5:
+	Added per user and default configuration options
+0.4:
+	The number of ticks of fire is now based on the health of the entity when it was shot.
+0.3:
+	Added the config file
+0.2:
+	Got the onEntityDamage function working correctly.
+0.1:
+	The plugin loads correctly. lol

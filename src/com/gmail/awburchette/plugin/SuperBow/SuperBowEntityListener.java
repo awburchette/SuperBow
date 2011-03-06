@@ -1,12 +1,13 @@
 package com.gmail.awburchette.plugin.SuperBow;
 
 import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Entity;
+//import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityListener;
 import org.bukkit.event.entity.EntityDamageByProjectileEvent;
+import org.bukkit.util.config.Configuration;
 
 public class SuperBowEntityListener extends EntityListener {
     private final SuperBow plugin;
@@ -32,16 +33,18 @@ public class SuperBowEntityListener extends EntityListener {
         if (event instanceof EntityDamageByProjectileEvent)
         {
         	EntityDamageByProjectileEvent edee = (EntityDamageByProjectileEvent) event;
-        	if(edee.getProjectile() instanceof Arrow){
+        	if(edee.getProjectile() instanceof Arrow) {
         		if(edee.getDamager() instanceof Player) {
         			Player p = (Player) edee.getDamager();
-        			if(p.isOp()) {
-        				event.setDamage(event.getDamage()*intDamageMultiplier);
-        				if(useFireArrows) {
-        					LivingEntity e = (LivingEntity) edee.getEntity();
-        					int ticks = (e.getHealth()*2)*10;
-        					e.setFireTicks(ticks);
-        				}
+        			Configuration c = plugin.config;
+        			intDamageMultiplier = c.getInt("SuperBow." + p.getName() + ".damageMultipler", c.getInt("SuperBow.Default.damageMultiplier", 1));
+        			useFireArrows = c.getBoolean("SuperBow." + p.getName() + ".useFireArrows", c.getBoolean("SuperBow.Default.useFireArrows", false));
+        			
+        			event.setDamage(event.getDamage()*intDamageMultiplier);
+        			if(useFireArrows) {
+        				LivingEntity e = (LivingEntity) edee.getEntity();
+        				int ticks = (e.getHealth()*2)*10;
+        				e.setFireTicks(ticks);
         			}
         		}
         	}

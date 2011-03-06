@@ -1,8 +1,24 @@
 Bukkit Plugin: SuperBow
 Author: bitswitch
 
-Let's ops have customized arrows.
+Let's players have customized arrows.
+Each player can be configured in the config.yml in plugins/SuperBow/
+If a player does not have their own section in the file it will give
+them the values under the Default entry.
 
 Current options:
-damageMultiplier - Let's the server op change how hard an ops arrow hits for.
+damageMultiplier - Changes how much damage an arrow does.
 useFireArrows - Will set any entity(Player or mob) on fire for as long as it takes to kill them.
+
+In the example config below bitswitch's arrows will set entities on fire and do (normal arrow damage)*5
+while everyone else's arrows act as arrows normally do.
+
+Example config:
+
+SuperBow:
+    Default:
+        damageMultiplier: 1
+        useFireArrows: false
+    bitswitch:
+        damageMultiplier: 5
+        useFireArrows: true

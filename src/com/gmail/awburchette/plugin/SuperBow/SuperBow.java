@@ -20,9 +20,8 @@ import org.bukkit.util.config.Configuration;
  * @author bitswitch
  */
 public class SuperBow extends JavaPlugin {
-    //SuperBowPlayerListener playerListener;
-    //SuperBowBlockListener blockListener;
     SuperBowEntityListener entityListener;
+    Configuration config;
     private final HashMap<Player, Boolean> debugees = new HashMap<Player, Boolean>();
     
     public void readConfig() {
@@ -32,9 +31,6 @@ public class SuperBow extends JavaPlugin {
 		if (!(file.exists())){
 			file.mkdir();
 		}
-    	Configuration _config = new Configuration(new File(dir + filename));
-
-    	_config.load();
 		file = new File(dir + filename);
     	if (!file.exists()){
     	      try{
@@ -42,24 +38,20 @@ public class SuperBow extends JavaPlugin {
     	    	    FileWriter fstream = new FileWriter(dir + filename);
     	    	    BufferedWriter out = new BufferedWriter(fstream);
     	    	    out.write("SuperBow:\n");
-    	    	    out.write("    useFireArrows: false\n");
-    	    	    out.write("    damageMultiplier: 1\n");
+    	    	    out.write("    Default:\n");
+    	    	    out.write("        damageMultiplier: 1\n");
+    	    	    out.write("        useFireArrows: false\n");
     	    	    //Close the output stream
     	    	    out.close();
     	    	    }catch (Exception e){//Catch exception if any
     	    	      System.out.println("SuperBow could not write the default config file.");
     	    	    }
     	}
-    	// Reading from yml file
-    	Boolean useFireArrows = _config.getBoolean("SuperBow.useFireArrows", false);
-    	int intDamageMultiplier = _config.getInt("SuperBow.damageMultiplier", 1);
-    	SuperBowEntityListener.setUseFireArrows(useFireArrows);
-    	SuperBowEntityListener.setDamageMultiplier(intDamageMultiplier);
+    	config = new Configuration(file);
+    	config.load();
         }
     
     public void onEnable() {
-    	//playerListener = new SuperBowPlayerListener(this);
-    	//blockListener = new SuperBowBlockListener(this);
     	entityListener = new SuperBowEntityListener(this);
         // Register our events
         PluginManager pm = getServer().getPluginManager();
