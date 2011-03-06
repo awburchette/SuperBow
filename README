@@ -1,4 +1,8 @@
 Bukkit Plugin: SuperBow
 Author: bitswitch
 
-A infinite ammo, 1 shot 1 kill, bow for bukkit server admins. 
+Let's ops have customized arrows.
+
+Current options:
+damageMultiplier - Let's the server op change how hard an ops arrow hits for.
+useFireArrows - Will set any entity(Player or mob) on fire for as long as it takes to kill them.

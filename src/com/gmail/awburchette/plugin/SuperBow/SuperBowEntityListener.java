@@ -1,6 +1,8 @@
 package com.gmail.awburchette.plugin.SuperBow;
 
 import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityListener;
@@ -36,8 +38,9 @@ public class SuperBowEntityListener extends EntityListener {
         			if(p.isOp()) {
         				event.setDamage(event.getDamage()*intDamageMultiplier);
         				if(useFireArrows) {
-        					edee.getEntity().setFireTicks(10);
-        					edee.getProjectile().setFireTicks(10);
+        					LivingEntity e = (LivingEntity) edee.getEntity();
+        					int ticks = (e.getHealth()*2)*10;
+        					e.setFireTicks(ticks);
         				}
         			}
         		}
