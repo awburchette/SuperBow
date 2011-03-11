@@ -1,7 +1,9 @@
-Add permissions and group manager support
-Get the block ignition stuff working
+Tweak stuff
+Comment my code (Like I should have done from the start)
 
 Done -
+Add permissions and group manager(works through FakePermissions.jar) support
+Get the block ignition stuff working
 Add commands to change options in game
 Add a command to reload the config file without restarting the server.
 Redo the way fire arrows work. 

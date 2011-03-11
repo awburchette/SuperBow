@@ -2,6 +2,17 @@ Bukkit Plugin: SuperBow
 Author: bitswitch
 
 Let's players have customized arrows.
+The arrows can be set to be on fire during flight, set entities on fire, set blocks on fire, and change the amount of damage they do.
+
+Permissions nodes:
+	SuperBow.help
+	SuperBow.info
+	SuperBow.damage
+	SuperBow.flight
+	SuperBow.entity
+	SuperBow.block
+	
+*The config file only holds default values and users current settings.*
 Each player can be configured in the config.yml in plugins/SuperBow/
 If a player does not have their own section in the file it will give
 them the values under the Default entry.
@@ -24,9 +35,10 @@ SuperBow:
             block: false
             entity: false
             flight: false
-    bitswitch:
-        damageMultiplier: 5
-        fireArrows:
-            block: true
-            entity: true
-            flight: true
+    Users:
+        bitswitch:
+            damageMultiplier: 5
+            fireArrows:
+                block: true
+                entity: true
+                flight: true

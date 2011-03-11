@@ -1,0 +1,256 @@
+public void onPlayerCommandPreprocess(PlayerChatEvent event) {
+    	String[] split = event.getMessage().split(" ");
+		Player p = event.getPlayer();
+		if (split[0].equalsIgnoreCase("/superbow")){
+			if (split.length >= 2){
+				// Begin - info
+				if (split[1].equalsIgnoreCase("info")) {
+					info(p);
+				}
+				// End - info
+				// Begin - help
+				if (split[1].equalsIgnoreCase("help")) {
+					help(p);
+				}
+				// End - help
+			}
+			if (plugin.config.getNode(strUserKey + p.getName()) != null) {
+				if (split.length >= 2){
+					// Begin - reload
+					if (split[1].equalsIgnoreCase("reload")){
+						if(p.isOp()) {
+							plugin.reloadConfig();
+						}
+					}
+					// End - reload
+					// Begin - add
+					if (split[1].equalsIgnoreCase("add")) {
+						if (split.length == 3) {
+							if (p.isOp()) {
+								plugin.config.setProperty(strUserKey + split[2], "");
+								plugin.config.setProperty(strUserKey + split[2] + strDMKey, 1);
+								plugin.config.setProperty(strUserKey + split[2] + strFABKey, false);
+								plugin.config.setProperty(strUserKey + split[2] + strFAEKey, false);
+								plugin.config.setProperty(strUserKey + split[2] + strFAFKey, false);
+								if(plugin.config.save()) {
+									p.sendMessage("Added " + split[2] + " to the config file");
+								} else {
+									p.sendMessage("Failed to add " + split[2] + " to the config file");
+								}
+							}
+						}
+					}
+					// End - add
+					// Begin - remove
+					if (split[1].equalsIgnoreCase("remove")) {
+						if (split.length == 3) {
+							if (p.isOp()) {
+								if(plugin.config.getNode(strUserKey + split[2]) != null) {
+									plugin.config.removeProperty(strUserKey + split[2]);
+									if(plugin.config.save()) {
+										p.sendMessage("Removed " + split[2] + " from the config file");
+									} else {
+										p.sendMessage("Failed to remove " + split[2] + " from the config file");
+									}
+								}
+							}
+						}
+					}
+					// End - remove
+					// Begin - block
+					if (split[1].equalsIgnoreCase("block")) {
+						if((plugin.config.getBoolean("SuperBow.Options.block", false) == false) || p.isOp()) {
+							if(split.length == 2) {
+								String key = strUserKey + p.getName() + strFABKey;
+								useFireArrows = plugin.config.getBoolean(key, plugin.config.getBoolean(strDefaultKey + strFABKey, false));
+								plugin.config.setProperty(key, !useFireArrows);
+								if(plugin.config.save()) {
+									p.sendMessage("Saved change");
+								} else {
+									p.sendMessage("Failed to save change");
+								}
+								if(!useFireArrows) {
+									p.sendMessage("Arrows will ignite blocks! (Currently not working)");
+								} else {
+									p.sendMessage("Arrows will not ignite blocks! (Currently not working)");
+								}
+							} else {
+								p.sendMessage("Usage: /superbow block");
+							}
+						}
+					}
+					// End - block
+					// Begin - entity
+					if (split[1].equalsIgnoreCase("entity")) {
+						if((plugin.config.getBoolean("SuperBow.Options.entity", false) == false) || p.isOp()) {
+							if(split.length == 2) {
+								String key = strUserKey + p.getName() + strFAEKey;
+								useFireArrows = plugin.config.getBoolean(key, plugin.config.getBoolean(strDefaultKey + strFAEKey, false));
+								plugin.config.setProperty(key, !useFireArrows);
+								if(plugin.config.save()) {
+									p.sendMessage("Saved change");
+								} else {
+									p.sendMessage("Failed to save change");
+								}
+								if(!useFireArrows) {
+									p.sendMessage("Arrows will ignite entities!");
+								} else {
+									p.sendMessage("Arrows will not ignite entities");
+								}
+							} else {
+								p.sendMessage("Usage: /superbow entity");
+							}
+						}
+					}
+					// End - entity
+					// Begin - flight
+					if (split[1].equalsIgnoreCase("flight")) {
+						if((plugin.config.getBoolean("SuperBow.Options.flight", false) == false) || p.isOp()) {
+							if(split.length == 2) {
+								String key = strUserKey + p.getName() + strFAFKey;
+								useFireArrows = plugin.config.getBoolean(key, plugin.config.getBoolean(strDefaultKey + strFAFKey, false));
+								plugin.config.setProperty(key, !useFireArrows);
+								if(plugin.config.save()) {
+									p.sendMessage("Saved change");
+								} else {
+									p.sendMessage("Failed to save change");
+								}
+								if(!useFireArrows) {
+									p.sendMessage("Arrows will be on fire during flight!");
+								} else {
+									p.sendMessage("Arrows will not be on fire during flight!");
+								}
+							} else {
+								p.sendMessage("Usage: /superbow flight");
+							}
+						}
+					}
+					// End - flight
+					// Begin - damage
+					if (split[1].equalsIgnoreCase("damage")) {
+						damage(p);
+					}
+					// End - damage
+					// Begin - options
+					if (split[1].equalsIgnoreCase("options")) {
+						if (p.isOp()) {
+							if (split.length == 3) {
+								if (split[2].equalsIgnoreCase("block")) {
+									String key = strTopKey + "Options.block";
+									useFireArrows = plugin.config.getBoolean(key, false);
+									plugin.config.setProperty(key, !useFireArrows);
+									if(plugin.config.save()) {
+										p.sendMessage("Saved change");
+									} else {
+										p.sendMessage("Failed to save change");
+									}
+									if(!useFireArrows) {
+										p.sendMessage("Block ignite is now Op only!");
+									} else {
+										p.sendMessage("Block ignite is available to all!");
+									}
+								}
+								if (split[2].equalsIgnoreCase("damage")) {
+									String key = strTopKey + "Options.damage";
+									useFireArrows = plugin.config.getBoolean(key, false);
+									plugin.config.setProperty(key, !useFireArrows);
+									if(plugin.config.save()) {
+										p.sendMessage("Saved change");
+									} else {
+										p.sendMessage("Failed to save change");
+									}
+									if(!useFireArrows) {
+										p.sendMessage("Damage Multiplier is now Op only!");
+									} else {
+										p.sendMessage("Damage Multiplie is available to all!");
+									}	
+								}
+								if (split[2].equalsIgnoreCase("entity")) {
+									String key = strTopKey + "Options.entity";
+									useFireArrows = plugin.config.getBoolean(key, false);
+									plugin.config.setProperty(key, !useFireArrows);
+									if(plugin.config.save()) {
+										p.sendMessage("Saved change");
+									} else {
+										p.sendMessage("Failed to save change");
+									}
+									if(!useFireArrows) {
+										p.sendMessage("Entity is now Op only!");
+									} else {
+										p.sendMessage("Entity is available to all!");
+									}
+								}
+								if (split[2].equalsIgnoreCase("flight")) {
+									String key = strTopKey + "Options.flight";
+									useFireArrows = plugin.config.getBoolean(key, false);
+									plugin.config.setProperty(key, !useFireArrows);
+									if(plugin.config.save()) {
+										p.sendMessage("Saved change");
+									} else {
+										p.sendMessage("Failed to save change");
+									}
+									if(!useFireArrows) {
+										p.sendMessage("Flight is now Op only!");
+									} else {
+										p.sendMessage("Flight is available to all!");
+									}
+								}
+								if (split[2].equalsIgnoreCase("help")) {
+									p.sendMessage("SuperBow option help:");
+									p.sendMessage("Options: block, damage, entity, flight");
+									p.sendMessage("Changes if the option is Op only or everyone");
+									p.sendMessage("Usage:");
+									p.sendMessage("/superbow option <option>");
+									p.sendMessage("/superbow option - Will print current options");
+								}
+							}
+							if (split.length == 2) {
+								p.sendMessage("SuperBow options:");
+								p.sendMessage("Block: " + plugin.config.getBoolean(strTopKey + "Options.block", false));
+								p.sendMessage("Damage: " + plugin.config.getBoolean(strTopKey + "Options.damage", false));
+								p.sendMessage("Entity: " + plugin.config.getBoolean(strTopKey + "Options.entity", false));
+								p.sendMessage("Flight: " + plugin.config.getBoolean(strTopKey + "Options.flight", false));
+							}
+						}
+					}
+					// End - options
+					// Begin - reset
+					if (split[1].equalsIgnoreCase("reset")) {
+						if (p.isOp()) {
+							if (split[2].equalsIgnoreCase("block")) {
+								resetOption("block", p);
+							}
+							if (split[2].equalsIgnoreCase("damage")) {
+								resetOption("damage", p);
+							}
+							if (split[2].equalsIgnoreCase("entity")) {
+								resetOption("entity", p);
+							}
+							if (split[2].equalsIgnoreCase("flight")) {
+								resetOption("flight", p);
+							}
+							if (split[2].equalsIgnoreCase("help")) {
+								p.sendMessage("Usage: /superbow reset <option>");
+								p.sendMessage("Options: block, damage, entity, flight");
+								p.sendMessage("Resets the option for everyone to the Default value.");
+								p.sendMessage("Useful after setting an option to Op only.");
+							}
+						}
+					}
+				} // End - if (split.length >= 2){
+			} else {
+				if(p.isOp()){
+					plugin.config.setProperty(strUserKey + p.getName(), "");
+					plugin.config.setProperty(strUserKey + p.getName() + strDMKey, 1);
+					plugin.config.setProperty(strUserKey + p.getName() + strFABKey, false);
+					plugin.config.setProperty(strUserKey + p.getName() + strFAEKey, false);
+					plugin.config.setProperty(strUserKey + p.getName() + strFAFKey, false);
+					if(plugin.config.save()) {
+						p.sendMessage("You have been added to the config file");
+					} else {
+						p.sendMessage("Failed to add you to the config file");
+					}
+				}
+			} // End - if (plugin.config.getNode("SuperBow." + p.getName()) != null) {
+		} // End - if (split[0].equalsIgnoreCase("/superbow")){
+    }

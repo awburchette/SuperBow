@@ -4,5 +4,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/home/bitswitch/Documents/Projects/bukkit.jar"/>
 	<classpathentry kind="lib" path="/home/bitswitch/Documents/Projects/GroupManager.jar"/>
+	<classpathentry kind="lib" path="/home/bitswitch/Documents/Projects/Permissions.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

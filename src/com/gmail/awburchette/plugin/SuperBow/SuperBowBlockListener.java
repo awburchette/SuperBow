@@ -2,8 +2,8 @@ package com.gmail.awburchette.plugin.SuperBow;
 
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.Material;
-import org.bukkit.event.block.BlockCanBuildEvent;
+import org.bukkit.entity.Arrow;
+import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.block.BlockInteractEvent;
 import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.BlockPhysicsEvent;
@@ -19,8 +19,13 @@ public class SuperBowBlockListener extends BlockListener {
         this.plugin = plugin;
     }
     @Override
-    public void onBlockInteract(BlockInteractEvent event) {
-       	System.out.println(event.getEntity().toString());
+    public void onBlockDamage(BlockDamageEvent event) {
+    	
     }
+    //public void onBlockPhysics(BlockPhysicsEvent event) {
+    //	System.out.println(event.getEventName());
+    //}
+    
+    
     //put all Block related code here
 }

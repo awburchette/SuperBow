@@ -1,3 +1,13 @@
+0.95:
+	Arrows can now set blocks on fire. Commence the chaos.
+	Assorted code tweaks
+	Added permissions nodes:
+		SuperBow.info
+		SuperBow.help
+		SuperBow.damage
+		SuperBow.block
+		SuperBow.entity
+		SuperBow.flight
 0.8:
 	Added commands:
 	/superbow help
