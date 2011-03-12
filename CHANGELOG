@@ -1,3 +1,7 @@
+0.96:
+	Fixed a block ignition bug where the blocks would catch fire at the
+	spot where you shot an entity even if the entity had moved from that spot
+	or died.
 0.95:
 	Arrows can now set blocks on fire. Commence the chaos.
 	Assorted code tweaks

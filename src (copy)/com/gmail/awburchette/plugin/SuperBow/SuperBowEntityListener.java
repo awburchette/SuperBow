@@ -27,8 +27,6 @@ public class SuperBowEntityListener extends EntityListener {
         {
         	EntityDamageByProjectileEvent edee = (EntityDamageByProjectileEvent) event;
         	if(edee.getProjectile() instanceof Arrow) {
-        		Arrow a = (Arrow) edee.getProjectile();
-        		plugin.arrowController.removeByID(a.getEntityId());
         		if(edee.getDamager() instanceof Player) {
         			Player p = (Player) edee.getDamager();
         			intDamageMultiplier = plugin.config.getInt("SuperBow.Users." + p.getName() + ".damageMultiplier", plugin.config.getInt("SuperBow.Default.damageMultiplier", 1));

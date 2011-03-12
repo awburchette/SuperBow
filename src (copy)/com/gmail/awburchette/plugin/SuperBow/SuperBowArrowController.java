@@ -22,18 +22,6 @@ public class SuperBowArrowController {
     public void addArrow(SuperBowArrow sba) {
     	arrows.add(sba);
     }
-    public void removeByID(int eID) {
-    	if(!arrows.isEmpty()) {
-	    	Iterator itr = arrows.iterator();
-	    	while(itr.hasNext()) {
-	    		SuperBowArrow a = (SuperBowArrow) itr.next();
-	    		if(a.arrow.getEntityId() == eID) {
-	    			arrows.remove(a);
-    				return;
-	    		}
-	    	}
-    	}
-    }
     public void checkArrows() {
 		if(!arrows.isEmpty()) {
 	    	Iterator itr = arrows.iterator();
